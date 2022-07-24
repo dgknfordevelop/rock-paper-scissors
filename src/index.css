@@ -1,13 +1,128 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --scissors-gradient: radial-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+  --paper-gradient: radial-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+  --rock-gradient: radial-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+  --cyan: radial-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
+
+  --dark-text: hsl(229, 25%, 31%);
+  --score-text: hsl(229, 64%, 46%);
+  --header-outline: hsl(217, 16%, 45%);
+
+  --background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%))
+}
+@layer base{
+  body {
+    margin: 0;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--background);
+  }
+  @media all and (min-width: 1536px){
+    body {
+      display:flex;
+      justify-content:center;
+  }
+    #root{
+      border: 1px solid red;
+      width: 100%;
+      max-width: 1536px;
+    }
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components{
+  .rock-paper-scissors-circle{
+    @apply w-[120px] md:w-[160px] h-[120px] md:h-[160px] rounded-full flex justify-center items-center;
+    z-index: 1;
+  }
+
+  .rock-paper-scissors-circle-result{
+    @apply lg:w-[250px] lg:h-[250px]
+  }
+
+  .rock-paper-scissors-img{
+    @apply bg-white bg-center bg-[length:40px_45px] lg:bg-[length:50px_55px] w-3/4 h-3/4 bg-no-repeat rounded-full shadow-inner;
+  }
+
+  .rock-paper-scissors-img-result{
+    @apply lg:bg-[length:70px_75px]
+  }
+
+  .play-rock-outer{
+    background: var(--rock-gradient);
+    box-shadow: 0px 4.5px 0px 0px #870c35;
+    position: relative;
+    right: 40px;
+    bottom:70px;
+    @apply md:bottom-[95px]
+  }
+  
+  .play-paper-outer{
+    background: var(--paper-gradient);
+    box-shadow:  0px 4.5px 0px 0px #1f2985;
+    position: relative;
+    left: 40px;
+    bottom:70px;
+    @apply md:bottom-[95px]
+  }
+  
+  .play-scissors-outer{
+    background: var(--scissors-gradient);
+    box-shadow: 0px 4.5px 0px 0px #b87018;
+    position: relative;
+    top: 16%;
+    @apply md:top-[25%]
+  }
+
+  .result-rock-outer{
+    background: var(--rock-gradient);
+    box-shadow: 0px 4.5px 0px 0px #870c35;
+  }
+
+  .result-paper-outer{
+    background: var(--paper-gradient);
+    box-shadow:  0px 4.5px 0px 0px #1f2985;
+  }
+
+  .result-scissors-outer{
+    background: var(--scissors-gradient);
+    box-shadow: 0px 4.5px 0px 0px #b87018;
+    
+  }
+  
+  .humanChooseOuterShadow{
+    box-shadow: 0 0 0 15px rgba(255 255 255 / 5%), 0 0 0 40px rgba(255 255 255 / 5%), 0 0 0 60px rgba(255 255 255 / 5%)
+  }
+
+  .triangle-background{
+    @apply bg-[url('./images/bg-triangle.svg')]  bg-contain bg-no-repeat bg-center
+     relative -top-[70%] md:-top-[75%] mr-auto ml-auto w-[230px] h-[190px] md:w-[345px] md:h-[295px];
+  }
+
+  .rules-button-box{
+    @apply flex justify-center lg:justify-end lg:pr-10 text-xl text-white mt-auto mb-10 lg:w-fit lg:ml-auto lg:relative lg:bottom-10;
+  }
+
+  .score-container{
+    @apply w-full h-[130px] md:h-[180px] lg:h-[220px] xl:w-2/3 lg:mx-auto flex justify-center pt-8;
+  }
+
+  .score-logo-info-container{
+    @apply w-5/6 border-2 border-header-outline h-full px-4 lg:px-10 lg:py-6 rounded-xl flex items-center justify-between;
+  }
+  
+  .app-logo{
+    @apply bg-[url('./images/logo.svg')] h-[50px] w-[80px] md:h-[80px] md:w-[130px] lg:h-[90px] lg:w-[150px] bg-cover;
+  }
+
+  .score-info-box{
+    @apply w-[80px] h-[70px] md:w-[110px] md:h-[80px] lg:w-[130px] lg:h-[90px] border flex flex-col bg-white justify-center items-center leading-none rounded-md;
+  }
 }

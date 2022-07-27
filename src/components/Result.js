@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+
  export default function Result({ scoreChange, setScore }) {
     let humanChoose;
     let resultText; 
@@ -75,7 +76,8 @@ return(
         <motion.div 
         initial={{ x: -300, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{duration: 1}}
+        exit={{ x: -300, opacity: 0 }}
+        transition={{duration: 0.5}}
         className="w-full h-[400px] flex flex-col pt-5">
 
             <div className="rock-paper-scissors-box flex justify-around items-center lg:w-3/4 xl:w-2/3 lg:justify-between lg:mx-auto h-full">

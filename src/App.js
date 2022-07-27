@@ -1,10 +1,13 @@
 import { useState, useCallback } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import Play from "./components/Play";
-import Result from "./components/Result";
+import {Routes, Route, useLocation} from 'react-router-dom';
+
 import Rules from "./components/Rules";
+import Play from './components/Play';
+import Result from './components/Result';
 import Score from "./components/Score";
 import { AnimatePresence } from 'framer-motion';
+
+
 function App() {
   const [toggleRules, setToggleRules] = useState(false);
   const [score, setScore] = useState(0);
@@ -25,12 +28,12 @@ function App() {
         }
   }, [setScore]);
 
-  let location = useLocation();
+  const location = useLocation()
 
   return (
     <div className="App h-screen flex flex-col">
         <Score score={score} />
-        <AnimatePresence>
+        <AnimatePresence exitBeforeEnter>
           <Routes location={location} key={location.pathname}>
               <Route path="/" element={<Play chooseItem={chooseItem} />} />
               <Route path="/result" element={<Result scoreChange={scoreChange} setScore={setScore} />} />

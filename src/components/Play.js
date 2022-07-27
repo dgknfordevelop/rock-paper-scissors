@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 export default function Play(props){
 
@@ -9,12 +8,7 @@ export default function Play(props){
     }   
 
     return(
-                <motion.div
-                 className="w-full h-[400px] md:h-[500px]"
-                 initial={{ x: 300, opacity: 0 }}
-                 animate={{ x: 0, opacity: 1 }}
-                 transition={{duration: 1}}
-                 >
+                <div className="w-full h-[400px] md:h-[500px]">
                     <div className="rock-paper-scissors-box flex justify-center items-center h-full" onClick={props.chooseItem}>
                         <Link to="/result" id="paper" className="rock-paper-scissors-circle play-paper-outer" onClick={numberForComputerItem}>
                                 <div id="paper" className="bg-[url('./images/icon-paper.svg')] rock-paper-scissors-img"></div>
@@ -31,6 +25,6 @@ export default function Play(props){
                         
                     <div className="triangle-background">   
                     </div>
-                </motion.div>
+                </div>
             )
 }

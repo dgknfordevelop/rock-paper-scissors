@@ -1,10 +1,10 @@
 import { useState, useCallback } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Play from "./components/Play";
 import Result from "./components/Result";
 import Rules from "./components/Rules";
 import Score from "./components/Score";
-
+import { AnimatePresence } from 'framer-motion';
 function App() {
   const [toggleRules, setToggleRules] = useState(false);
   const [score, setScore] = useState(0);
@@ -24,14 +24,18 @@ function App() {
           setScore(score => score - 1);
         }
   }, [setScore]);
-  
+
+  let location = useLocation();
+
   return (
     <div className="App h-screen flex flex-col">
         <Score score={score} />
-        <Routes>
-            <Route path="/" element={<Play chooseItem={chooseItem} />} />
-            <Route path="/result" element={<Result scoreChange={scoreChange} setScore={setScore} />} />
-        </Routes>
+        <AnimatePresence>
+          <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<Play chooseItem={chooseItem} />} />
+              <Route path="/result" element={<Result scoreChange={scoreChange} setScore={setScore} />} />
+          </Routes>
+        </AnimatePresence>
         {toggleRules ? <Rules rulesButton={rulesButton} /> : null}
         <div className="rules-button-box" onClick={rulesButton}>
             <button className="border w-fit h-fit rounded-lg px-8 py-2 tracking-widest">RULES</button>

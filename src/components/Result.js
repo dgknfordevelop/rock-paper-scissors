@@ -72,12 +72,19 @@ import { motion } from 'framer-motion';
         }
         
 return(
-        <div className="w-full h-[400px] flex flex-col pt-5">
+        <motion.div 
+        initial={{ x: -300, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{duration: 1}}
+        className="w-full h-[400px] flex flex-col pt-5">
+
             <div className="rock-paper-scissors-box flex justify-around items-center lg:w-3/4 xl:w-2/3 lg:justify-between lg:mx-auto h-full">
+                
                 <div className="humanChoose lg:flex lg:flex-col-reverse">
                     {humanChoose}
                     <span className="mt-5 inline-block ml-5 text-white tracking-wider md:text-xl lg:text-2xl lg:mb-5 lg:ml-14">YOU PICKED</span>
                 </div>
+                
                 <div className="computerChoose lg:flex lg:flex-col-reverse">
                     {computer == 1 && <motion.div animate={{scale : 1}} transition={{duration: 1}} initial={{scale : 0}}  className="rock-paper-scissors-circle rock-paper-scissors-circle-result result-rock-outer">
                                         <div id="rock" className="bg-[url('./images/icon-rock.svg')] rock-paper-scissors-img rock-paper-scissors-img-result"></div>
@@ -90,13 +97,16 @@ return(
                                       </motion.div>}
                     <span className="mt-5 inline-block text-white md:text-xl lg:text-2xl lg:mb-5 lg:ml-8">THE HOUSE PICKED</span>
                 </div>
+            
             </div>
+            
             <motion.div animate={{scale : 1}} transition={{duration: 1}} initial={{scale : 0}} className="resultScene flex flex-col items-center lg:relative lg:bottom-52 lg:mx-10">
                 <span className="text-5xl font-bold text-white mb-6">{resultText}</span>
                 <Link to="/" className="border bg-white rounded-lg flex justify-center w-[185px] py-3">
                     <button className="font-semibold text-lg tracking-widest text-dark-text hover:text-red-500">PLAY AGAIN</button>
                 </Link>
             </motion.div>
-        </div>
+
+        </motion.div>
     )
 }
